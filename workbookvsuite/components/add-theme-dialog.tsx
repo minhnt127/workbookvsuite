@@ -50,7 +50,7 @@ export function AddThemeDialog() {
       description: `“${saved.name}” đã được lưu vào My Themes và sẵn sàng customize.`,
     });
 
-    router.push(`/components/customize?saved=${saved.id}`);
+    router.push(`/components/customize?saved=${saved.id}&view=customize`);
   };
 
   return (

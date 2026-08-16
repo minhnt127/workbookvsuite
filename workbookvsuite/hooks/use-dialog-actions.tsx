@@ -287,6 +287,33 @@ function useDialogActionsStore(): DialogActionsContextType {
 
 export const DialogActionsContext = createContext<DialogActionsContextType | null>(null);
 
+const noop = () => {};
+const noopAsync = async () => {};
+
+const defaultDialogActions: DialogActionsContextType = {
+  cssImportOpen: false,
+  codePanelOpen: false,
+  saveDialogOpen: false,
+  shareDialogOpen: false,
+  shareUrl: "",
+  dialogKey: 0,
+  isCreatingTheme: false,
+  isUpdatingTheme: false,
+  isGeneratingTheme: false,
+  pendingAction: null,
+  existingThemeName: undefined,
+  setCssImportOpen: noop,
+  setCodePanelOpen: noop,
+  setSaveDialogOpen: noop,
+  setShareDialogOpen: noop,
+  handleCssImport: noop,
+  handleSaveClick: noopAsync,
+  handleShareClick: noopAsync,
+  handleOpenInV0: noop,
+  saveTheme: noopAsync,
+  handleUpdateExisting: noopAsync,
+};
+
 export function DialogActionsProvider({ children }: { children: ReactNode }) {
   const { themeState } = useEditorStore();
   const store = useDialogActionsStore();
@@ -329,7 +356,7 @@ export function useDialogActions(): DialogActionsContextType {
   const context = useContext(DialogActionsContext);
 
   if (!context) {
-    throw new Error("useDialogActions must be used within a DialogActionsProvider");
+    return defaultDialogActions;
   }
 
   return context;
