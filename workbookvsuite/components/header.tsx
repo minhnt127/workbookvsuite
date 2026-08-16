@@ -6,16 +6,25 @@ import { Button } from "@/components/ui/button";
 import { Boxes, Palette } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export function Header() {
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="flex h-16 items-center justify-between gap-3 px-4 md:px-6">
         <div className="flex min-w-0 items-center gap-5">
-          <Link href="/" className="flex shrink-0 items-center" aria-label="Design System">
+          <Link
+            href="/"
+            onClick={(event) => {
+              event.preventDefault();
+              router.push("/");
+            }}
+            className="flex shrink-0 items-center"
+            aria-label="Design System"
+          >
             <span className="flex items-center dark:rounded-md dark:bg-white dark:px-1.5 dark:py-1">
               <Image
                 src="/design-system-logo.png"

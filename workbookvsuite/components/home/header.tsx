@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { ChevronRight, Menu, X } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ThemeToggle } from "../theme-toggle";
 
 interface HeaderProps {
@@ -23,6 +24,8 @@ const navbarItems = [
 ];
 
 export function Header({ isScrolled, mobileMenuOpen, setMobileMenuOpen }: HeaderProps) {
+  const router = useRouter();
+
   const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const href = e.currentTarget.getAttribute("href");
     if (!href?.startsWith("#")) return;
@@ -40,7 +43,14 @@ export function Header({ isScrolled, mobileMenuOpen, setMobileMenuOpen }: Header
       )}
     >
       <div className="container relative mx-auto flex h-16 items-center justify-between px-4 md:px-6">
-        <Link href="/" className="flex items-center gap-2 font-semibold">
+        <Link
+          href="/"
+          onClick={(event) => {
+            event.preventDefault();
+            router.push("/");
+          }}
+          className="flex items-center gap-2 font-semibold"
+        >
           <Logo className="size-6" />
           <span>V-Suite</span>
         </Link>
