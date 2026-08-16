@@ -202,16 +202,20 @@ export function ComponentDocs({ embedded = false }: { embedded?: boolean }) {
       <ScrollArea className="min-h-0 min-w-0 flex-1">
         <div className="mx-auto flex w-full max-w-[1100px] gap-6 px-5 py-5 md:px-8 lg:py-7">
           <main className="min-w-0 flex-1">
-            <div className="mb-7 flex items-start justify-between gap-4">
-              <div className="min-w-0">
-                <div className="mb-2 flex items-center gap-2 lg:hidden">
-                  <Badge variant="secondary">Components</Badge>
-                  <Badge variant="outline">{doc.category}</Badge>
+            <div className="mb-7 flex flex-col gap-3">
+              <div className="flex items-start justify-between gap-4">
+                <div className="min-w-0">
+                  <div className="mb-2 flex items-center gap-2 lg:hidden">
+                    <Badge variant="secondary">Components</Badge>
+                    <Badge variant="outline">{doc.category}</Badge>
+                  </div>
+                  <div className="flex flex-wrap items-baseline gap-2">
+                    <h1 className="text-3xl font-semibold tracking-tight">{doc.name}</h1>
+                    <p className="max-w-2xl text-base leading-7 text-muted-foreground">{doc.description}</p>
+                  </div>
                 </div>
-                <h1 className="text-3xl font-semibold tracking-tight">{doc.name}</h1>
-                <p className="mt-2 max-w-2xl text-base leading-7 text-muted-foreground">{doc.description}</p>
               </div>
-              <div className="flex shrink-0 items-center gap-1">
+              <div className="flex shrink-0 flex-wrap items-center justify-end gap-1">
                 <Button variant="ghost" size="sm" className="hidden gap-2 lg:inline-flex" asChild>
                   <a href={`https://ui.shadcn.com/docs/components/radix/${doc.slug}`} target="_blank" rel="noreferrer">
                     shadcn/ui <ExternalLink className="size-3.5" />
