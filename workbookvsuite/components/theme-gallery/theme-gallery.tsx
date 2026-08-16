@@ -247,12 +247,12 @@ export function ThemeGallery() {
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder="Search themes..."
-                  className="h-[48px] rounded-xl border-input bg-white pl-11 shadow-none dark:bg-background"
+                  className="!h-[48px] min-h-[48px] rounded-xl border-input bg-white pl-11 shadow-none dark:bg-background"
                 />
               </div>
 
               <Select value={sort} onValueChange={(value) => setSort(value as SortOption)}>
-                <SelectTrigger className="h-[48px] w-full rounded-xl border-input bg-white px-3.5 shadow-none hover:bg-white focus:ring-2 focus:ring-ring/30 dark:bg-background dark:hover:bg-background sm:w-[230px] [&>svg]:size-5">
+                <SelectTrigger className="!h-[48px] min-h-[48px] w-full rounded-xl border-input bg-white px-3.5 shadow-none hover:bg-white focus:ring-2 focus:ring-ring/30 dark:bg-background dark:hover:bg-background sm:w-[230px] [&>svg]:size-5">
                   <span className="flex min-w-0 items-center gap-2">
                     <ListFilter className="size-5 shrink-0 text-muted-foreground" strokeWidth={1.8} />
                     <SelectValue placeholder="Popular / All Time" />
