@@ -202,39 +202,27 @@ export function ComponentDocs({ embedded = false }: { embedded?: boolean }) {
       <ScrollArea className="min-h-0 min-w-0 flex-1">
         <div className="mx-auto flex w-full max-w-[1100px] gap-6 px-5 py-5 md:px-8 lg:py-7">
           <main className="min-w-0 flex-1">
-            <div className="mb-7 flex flex-col gap-3">
-              <div className="flex items-start justify-between gap-4">
-                <div className="min-w-0">
-                  <div className="mb-2 flex items-center gap-2 lg:hidden">
-                    <Badge variant="secondary">Components</Badge>
-                    <Badge variant="outline">{doc.category}</Badge>
-                  </div>
-                  <div className="flex flex-wrap items-baseline gap-2">
-                    <h1 className="text-3xl font-semibold tracking-tight">{doc.name}</h1>
-                    <p className="max-w-2xl text-base leading-7 text-muted-foreground">{doc.description}</p>
-                  </div>
+            <div className="mb-7 grid gap-[150px] md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
+              <div className="min-w-0">
+                <div className="mb-2 flex items-center gap-2 lg:hidden">
+                  <Badge variant="secondary">Components</Badge>
+                  <Badge variant="outline">{doc.category}</Badge>
+                </div>
+                <div className="flex min-w-0 flex-col gap-1">
+                  <h1 className="text-3xl font-semibold tracking-tight">{doc.name}</h1>
+                  <p className="max-w-3xl text-base leading-7 text-muted-foreground">{doc.description}</p>
                 </div>
               </div>
-              <div className="flex shrink-0 flex-wrap items-center justify-end gap-1">
+
+              <div className="flex shrink-0 flex-wrap items-center justify-end gap-2 md:justify-self-end">
                 <Button variant="ghost" size="sm" className="hidden gap-2 lg:inline-flex" asChild>
                   <a href={`https://ui.shadcn.com/docs/components/radix/${doc.slug}`} target="_blank" rel="noreferrer">
                     shadcn/ui <ExternalLink className="size-3.5" />
                   </a>
                 </Button>
-                <Button variant="outline" size="sm" className="hidden gap-2 lg:inline-flex" onClick={() => {
-                  const params = new URLSearchParams(searchParams.toString());
-                  params.delete("view");
-                  const query = params.toString();
-                  router.push(`/components/customize${query ? `?${query}` : ""}`);
-                }}>
-                  <Palette className="size-4" /> Customize theme
-                </Button>
                 <ExportDesignSystemButton />
-                <Button variant="secondary" size="sm" className="hidden gap-2 xl:inline-flex" onClick={() => navigator.clipboard?.writeText(pageCode)}>
-                  <Copy className="size-4" /> Copy Page <ChevronDown className="size-3.5" />
-                </Button>
-                <Button variant="secondary" size="icon" className="size-9" disabled={!previous} onClick={() => previous && selectComponent(previous.slug)}><ArrowLeft className="size-4" /></Button>
-                <Button variant="secondary" size="icon" className="size-9" disabled={!next} onClick={() => next && selectComponent(next.slug)}><ArrowRight className="size-4" /></Button>
+                <Button variant="secondary" size="icon" className="size-10 rounded-lg border bg-muted/60 text-foreground hover:bg-muted" disabled={!previous} onClick={() => previous && selectComponent(previous.slug)}><ArrowLeft className="size-4" /></Button>
+                <Button variant="secondary" size="icon" className="size-10 rounded-lg border bg-muted/60 text-foreground hover:bg-muted" disabled={!next} onClick={() => next && selectComponent(next.slug)}><ArrowRight className="size-4" /></Button>
               </div>
             </div>
 
