@@ -8,7 +8,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
-import { ArrowLeft, ArrowRight, ChevronDown, Copy, ExternalLink, MousePointer2, Palette, Search } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink, MousePointer2, Search } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { componentCategories, componentDocs, getComponentDoc } from "./component-registry";
@@ -192,8 +192,6 @@ export function ComponentDocs({ embedded = false }: { embedded?: boolean }) {
     params.delete("view");
     router.replace(`${embedded ? "/editor/theme" : "/components"}?${params.toString()}`, { scroll: false });
   };
-
-  const pageCode = `# ${doc.name}\n\n${doc.description}\n\nInstallation\n${`pnpm dlx shadcn@latest add ${doc.slug}`}\n\nUsage\n${doc.usage}`;
 
   return (
     <div className={cn("flex min-h-0 w-full bg-background text-foreground", embedded ? "h-full" : "min-h-[calc(100svh-3.5rem)]")}>
