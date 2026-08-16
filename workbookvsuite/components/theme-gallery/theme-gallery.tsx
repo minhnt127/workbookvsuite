@@ -240,19 +240,19 @@ export function ThemeGallery() {
               <p className="mt-1 text-sm text-muted-foreground">{sourceMeta[sourceFilter].description}</p>
             </div>
 
-            <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center">
+            <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-stretch">
               <div className="relative w-full sm:max-w-[460px]">
                 <Search className="absolute left-3.5 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" strokeWidth={1.8} />
                 <Input
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder="Search themes..."
-                  className="h-12 rounded-xl border-input bg-white pl-11 shadow-none dark:bg-background"
+                  className="h-[48px] rounded-xl border-input bg-white pl-11 shadow-none dark:bg-background"
                 />
               </div>
 
               <Select value={sort} onValueChange={(value) => setSort(value as SortOption)}>
-                <SelectTrigger className="h-12 w-full rounded-xl border-input bg-white px-3.5 shadow-none hover:bg-white focus:ring-2 focus:ring-ring/30 dark:bg-background dark:hover:bg-background sm:w-[230px] [&>svg]:size-5">
+                <SelectTrigger className="h-[48px] w-full rounded-xl border-input bg-white px-3.5 shadow-none hover:bg-white focus:ring-2 focus:ring-ring/30 dark:bg-background dark:hover:bg-background sm:w-[230px] [&>svg]:size-5">
                   <span className="flex min-w-0 items-center gap-2">
                     <ListFilter className="size-5 shrink-0 text-muted-foreground" strokeWidth={1.8} />
                     <SelectValue placeholder="Popular / All Time" />
