@@ -1,6 +1,7 @@
 "use client";
 
 import { HorizontalScrollArea } from "@/components/horizontal-scroll-area";
+import { ProDashboardPreview } from "@/components/pro-dashboard-preview";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SaveLocalThemeButton } from "@/components/editor/action-bar/components/save-local-theme-button";
 import type { ComponentCategory } from "@/components/component-docs/component-registry";
@@ -122,7 +123,12 @@ const ThemePreviewPanel = ({
           onMouseLeave={handleMouseLeave}
         >
           <ScrollArea className="size-full">
-            <ComponentGroupShowcase category={activeGroup.category} />
+            <div className="space-y-4 p-4">
+              <ProDashboardPreview />
+              <div className="rounded-xl border bg-background">
+                <ComponentGroupShowcase category={activeGroup.category} />
+              </div>
+            </div>
           </ScrollArea>
         </div>
 

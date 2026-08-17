@@ -1,6 +1,7 @@
 "use client";
 
 import { CopyButton } from "@/components/copy-button";
+import { ProDashboardPreview } from "@/components/pro-dashboard-preview";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -223,6 +224,14 @@ export function ComponentDocs({ embedded = false }: { embedded?: boolean }) {
                 <Button variant="secondary" size="icon" className="size-10 rounded-lg border bg-muted/60 text-foreground hover:bg-muted" disabled={!next} onClick={() => next && selectComponent(next.slug)}><ArrowRight className="size-4" /></Button>
               </div>
             </div>
+
+            <section className="mb-8 scroll-mt-6">
+              <div className="mb-3 flex items-center gap-2">
+                <Badge variant="secondary">Problock</Badge>
+                <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">Dashboard</span>
+              </div>
+              <ProDashboardPreview />
+            </section>
 
             <section id="preview" className="scroll-mt-6">
               <Tabs defaultValue="preview" className="w-full">
