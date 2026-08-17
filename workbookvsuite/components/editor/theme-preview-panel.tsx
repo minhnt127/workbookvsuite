@@ -39,7 +39,13 @@ const TypographyDemo = lazy(() => import("@/components/examples/typography/typog
 const CustomDemo = lazy(() => import("@/components/examples/custom"));
 
 
-const customizerGroups: { key: string; label: string; category: ComponentCategory }[] = [
+const customizerGroups: {
+  key: string;
+  label: string;
+  category: ComponentCategory;
+  variant?: "components" | "block";
+}[] = [
+  { key: "blocks", label: "Blocks", category: "Layout", variant: "block" },
   { key: "forms", label: "Forms & Input", category: "Forms" },
   { key: "layout", label: "Layout", category: "Layout" },
   { key: "navigation", label: "Overlay & Navigation", category: "Overlay & Navigation" },
@@ -69,7 +75,7 @@ const ThemePreviewPanel = ({
   customizerMode = false,
 }: ThemeEditorPreviewProps & { themeId?: string; themeName?: string; customizerMode?: boolean }) => {
   const { isFullscreen, toggleFullscreen } = useFullscreen();
-  const [customizerGroup, setCustomizerGroup] = useState("forms");
+  const [customizerGroup, setCustomizerGroup] = useState("blocks");
   const [activeTab, setActiveTab] = useQueryState("p", {
     defaultValue: customizerMode ? "cards" : "components",
   });
@@ -123,12 +129,13 @@ const ThemePreviewPanel = ({
           onMouseLeave={handleMouseLeave}
         >
           <ScrollArea className="size-full">
-            <div className="space-y-4 p-4">
-              <ProDashboardPreview />
-              <div className="rounded-xl border bg-background">
-                <ComponentGroupShowcase category={activeGroup.category} />
+            {activeGroup.variant === "block" ? (
+              <div className="p-4">
+                <ProDashboardPreview />
               </div>
-            </div>
+            ) : (
+              <ComponentGroupShowcase category={activeGroup.category} />
+            )}
           </ScrollArea>
         </div>
 
@@ -159,6 +166,7 @@ const ThemePreviewPanel = ({
               {!customizerMode && <TabsTriggerPill value="components">Components</TabsTriggerPill>}
               <TabsTriggerPill value="custom">Custom</TabsTriggerPill>
               <TabsTriggerPill value="cards">Cards</TabsTriggerPill>
+              <TabsTriggerPill value="blocks">Blocks</TabsTriggerPill>
 
               <div className="hidden md:flex">
                 <TabsTriggerPill value="dashboard">Dashboard</TabsTriggerPill>
@@ -273,6 +281,16 @@ const ThemePreviewPanel = ({
               <TabsContent value="custom" className="@container m-0 size-full">
                 <ExamplesPreviewContainer className="size-full">
                   <CustomDemo />
+                </ExamplesPreviewContainer>
+              </TabsContent>
+
+              <TabsContent value="blocks" className="@container m-0 size-full">
+                <ExamplesPreviewContainer className="size-full">
+                  <ScrollArea className="size-full">
+                    <div className="space-y-4 p-4">
+                      <ProDashboardPreview />
+                    </div>
+                  </ScrollArea>
                 </ExamplesPreviewContainer>
               </TabsContent>
 

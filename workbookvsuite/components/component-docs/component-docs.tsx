@@ -225,18 +225,11 @@ export function ComponentDocs({ embedded = false }: { embedded?: boolean }) {
               </div>
             </div>
 
-            <section className="mb-8 scroll-mt-6">
-              <div className="mb-3 flex items-center gap-2">
-                <Badge variant="secondary">Problock</Badge>
-                <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">Dashboard</span>
-              </div>
-              <ProDashboardPreview />
-            </section>
-
             <section id="preview" className="scroll-mt-6">
               <Tabs defaultValue="preview" className="w-full">
                 <TabsList className="mb-4 h-10 bg-transparent p-0">
                   <TabsTrigger value="preview" className="rounded-none border-b-2 border-transparent px-0 pr-6 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none">Preview</TabsTrigger>
+                  <TabsTrigger value="blocks" className="rounded-none border-b-2 border-transparent px-0 pr-6 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none">Blocks</TabsTrigger>
                   <TabsTrigger value="code" className="rounded-none border-b-2 border-transparent px-0 pr-6 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none">Code</TabsTrigger>
                 </TabsList>
                 <TabsContent value="preview" className="m-0">
@@ -245,6 +238,15 @@ export function ComponentDocs({ embedded = false }: { embedded?: boolean }) {
                   </div>
                   <div className="relative flex min-h-[340px] items-center justify-center rounded-2xl border bg-card p-6 shadow-xs md:min-h-[390px] md:p-10">
                     <InteractivePreview>{doc.preview}</InteractivePreview>
+                  </div>
+                </TabsContent>
+                <TabsContent value="blocks" className="m-0">
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <Badge variant="secondary">Problock</Badge>
+                      <span className="font-medium uppercase tracking-[0.18em] text-muted-foreground">Dashboard</span>
+                    </div>
+                    <ProDashboardPreview />
                   </div>
                 </TabsContent>
                 <TabsContent value="code" className="m-0"><CodePanel code={doc.usage} /></TabsContent>
